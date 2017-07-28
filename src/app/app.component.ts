@@ -72,4 +72,8 @@ export class AppComponent {
     this.ngRedux.dispatch(this.actions.loadData());
   }
 
+  deleteCity(id) {
+    console.log('DELETING CITY WITH ID: ', id)
+  }
+
 }

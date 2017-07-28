@@ -18,12 +18,18 @@ export class CitiesEpics {
     private service: CitiesService,
     private actions: CitiesActions
   ) {
-    this.epics = [ this.loadCities ];
+    this.epics = [this.loadCities, this.removeCity];
   }
 
-  loadCities= action$ => action$
+  loadCities = action$ => action$
     .ofType(AppActions.LOAD_DATA)
     .switchMap(a => this.service.getAll()
       .map(data => this.actions.loadSucceeded(data))
       .catch(err => of(this.actions.loadFailed(err))));
+
+  removeCity = action$ => action$
+    .ofType(CitiesActions.REMOVE_CITY)
+    .switchMap(a => this.service.removeCity(a.payload))
+    .map(data => this.actions.removedSucceded(data))
+    .catch(err => this.actions.removedError(err));
 }

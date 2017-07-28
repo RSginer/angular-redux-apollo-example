@@ -8,6 +8,8 @@ export class AppActions {
   loadData() {
     return {
       type: AppActions.LOAD_DATA
-    }
+    };
   }
+
+
 }
