@@ -1,3 +1,4 @@
+import { INITIAL_STATE } from './store';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
@@ -53,7 +54,7 @@ export class AppComponent {
 
     ngRedux.configureStore(
       rootReducer,
-      {},
+      INITIAL_STATE,
       [
         createEpicMiddleware(combineEpics(...elephantsEpics.epics)),
         createEpicMiddleware(combineEpics(...lionsEpics.epics)),
@@ -70,10 +71,6 @@ export class AppComponent {
 
   reload() {
     this.ngRedux.dispatch(this.actions.loadData());
-  }
-
-  deleteCity(id) {
-    console.log('DELETING CITY WITH ID: ', id)
   }
 
 }

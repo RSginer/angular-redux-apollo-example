@@ -30,6 +30,8 @@ export class CitiesEpics {
   removeCity = action$ => action$
     .ofType(CitiesActions.REMOVE_CITY)
     .switchMap(a => this.service.removeCity(a.payload))
-    .map(data => this.actions.removedSucceded(data))
+    .map(data =>  this.actions.removedSucceded(data))
     .catch(err => this.actions.removedError(err));
+
+
 }

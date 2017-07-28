@@ -27,7 +27,7 @@ export class CitiesActions {
   removedSucceded(id) {
     return {
       type: CitiesActions.REMOVED_SUCCEDED,
-      id
+      payload: id
     };
   }
   removedError(error) {

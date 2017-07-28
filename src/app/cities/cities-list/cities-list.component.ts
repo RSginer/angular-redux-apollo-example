@@ -1,4 +1,5 @@
-import { Component,Output, EventEmitter } from '@angular/core';
+import { ICitiesState } from './../cities.store';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { CitiesActions } from '../cities.actions';
 import { AppActions } from '../../app.actions';
@@ -6,23 +7,19 @@ import { AppActions } from '../../app.actions';
 @Component({
   selector: 'app-cities-list',
   templateUrl: './cities-list.component.html',
-  styleUrls: ['./cities-list.component.css']
+  styleUrls: ['./cities-list.component.css'],
 })
 export class CitiesListComponent {
 
   @Output() public onRemoveCity: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private store: NgRedux<any>,
+    private store: NgRedux<ICitiesState>,
     private citiesActions: CitiesActions
-  ){
-
-  }
+  ) {}
   // Shorthand for
   // constructor(ngRedux: NgRedux { this.elephants$ = ngRedux.select('elephants'); })
   @select(['cities', 'list']) cities$;
-  @select(['cities', 'isLoading']) loading;
-
 
   // Since we're observing an array of items, we need to set up a 'trackBy'
   // parameter so Angular doesn't tear down and rebuild the list's DOM every

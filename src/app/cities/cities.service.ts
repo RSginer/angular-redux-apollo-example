@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import ApolloClient from 'apollo-client';
 import gql from 'graphql-tag';
+import { Observable } from 'rxjs';
 
 const getCities = gql`
       query CitiesQuery {
@@ -27,20 +28,22 @@ export class CitiesService {
   constructor(private apollo: Angular2Apollo) { }
 
   getAll() {
-    return this.apollo.watchQuery<any>({
+    return (this.apollo.watchQuery<any>({
       query: getCities
-    }).map(({ data, loading }) => data.allCities)
-      .catch(({ err }) => err);
+    }) as Observable<any>)
+    .map(({ data }) => data.allCities)
+    .catch(({ err }) => err);
   }
 
 
   removeCity(id) {
-    return this.apollo.mutate({
+    return (this.apollo.mutate({
       mutation: deleteCity,
       variables: {
         id: id
       }
-    }).map(({ data, loading }: any) => data)
-      .catch(({ err }) => err);
+    }) as Observable<any>)
+    .map(({ data }) => data.deleteCity.id)
+    .catch(({ err }) => err);
   }
 }

@@ -11,13 +11,11 @@ export function citiesReducer(state: ICitiesState = CITIES_INITIAL_STATE, action
     case CitiesActions.LOAD_FAILED:
       return action.error;
     case CitiesActions.REMOVE_CITY:
-      return Object.assign({}, state, {loading: true, list: [].concat(state.list.filter(i => i.id !== action.payload))});
-
-     // return Object.assign({}, state, { loading: true });
+      return Object.assign({}, state, { isLoading: true});
     case CitiesActions.REMOVED_SUCCEDED:
-      return Object.assign({}, state, {loading: false, list: [].concat(state.list.filter(i => i.id !== action.payload))});
+      return Object.assign({}, state, { isLoading: false, list: [].concat(state.list.filter(i => i.id !== action.payload))});
     case CitiesActions.REMOVED_ERROR:
-      return Object.assign({}, state, { loading: false });
+      return Object.assign({}, state, { isLoading: false });
   }
   return state;
 }
