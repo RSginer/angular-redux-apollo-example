@@ -3,7 +3,7 @@ import { CitiesActions } from './cities.actions';
 import { ICitiesState, CITIES_INITIAL_STATE } from './cities.store';
 import { tassign } from 'tassign';
 import { AppActions } from '../app.actions';
-import { CitiesReducerHelper } from './cities.reducer-helper';
+import { CitiesReducerHelper } from './cities.crud-reducer-helper';
 
 export function citiesReducer(state: ICitiesState = CITIES_INITIAL_STATE, action: IPayloadAction) {
   let citiesReducerHelper = new CitiesReducerHelper(state, action);

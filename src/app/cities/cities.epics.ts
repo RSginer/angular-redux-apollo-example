@@ -1,4 +1,3 @@
-import { CitiesService } from './cities.service';
 import { CitiesActions } from './cities.actions';
 import { Injectable } from '@angular/core';
 import { Epic } from 'redux-observable';
@@ -8,6 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { CitiesService } from './cities.crud-service';
 
 
 @Injectable()
