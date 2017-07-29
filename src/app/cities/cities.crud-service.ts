@@ -1,7 +1,6 @@
 import { ICRUDService } from './../utils/crud-service';
 import { Angular2Apollo } from 'angular2-apollo';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import ApolloClient from 'apollo-client';
 import gql from 'graphql-tag';
