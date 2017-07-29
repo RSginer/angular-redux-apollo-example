@@ -5,10 +5,15 @@ import { Action } from 'redux';
 export class CitiesActions {
   static LOAD_SUCCEEDED = 'LOAD_SUCCEEDED(CITIES)';
   static LOAD_FAILED = 'LOAD_FAILED(CITIES)';
+
   static REMOVED_SUCCEDED = 'REMOVED_SUCCEDED';
   static REMOVED_ERROR = 'REMOVED_ERROR';
   static REMOVE_CITY = 'REMOVE_CITY';
 
+  static SELECT_CITY = 'SELECT_CITY';
+
+  static UPDATE_CITY = 'UPDATE_CITY';
+  static UPDATE_SUCCEDED = 'UPDATED_SUCCEDED';
 
   loadSucceeded(payload) {
     return {
@@ -41,6 +46,34 @@ export class CitiesActions {
     return {
       type: CitiesActions.REMOVE_CITY,
       payload: id
+    };
+  }
+
+  selectCity(city) {
+    return {
+      type: CitiesActions.SELECT_CITY,
+      payload: city
+    };
+  }
+
+  updateCity(city) {
+    return {
+      type: CitiesActions.UPDATE_CITY,
+      payload: city
+    };
+  }
+
+  updateSucceded(city) {
+    return {
+      type: CitiesActions.UPDATE_SUCCEDED,
+      payload: city
+    };
+  }
+
+  updateError(city) {
+    return {
+      type: CitiesActions.UPDATE_SUCCEDED,
+      payload: city
     };
   }
 }

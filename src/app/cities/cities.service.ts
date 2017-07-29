@@ -23,18 +23,28 @@ const deleteCity = gql`
         }
     }`;
 
+
+const updateCity = gql`
+    mutation updateCity($country: String!, $id: ID!, $name: String!) {
+        updateCity(country: $country, id: $id, name: $name){
+           id,
+           name,
+           country
+        }
+    }`;
+
 @Injectable()
 export class CitiesService {
   constructor(private apollo: Angular2Apollo) { }
 
   getAll() {
     return (this.apollo.watchQuery<any>({
-      query: getCities
+      query: getCities,
+      pollInterval: 20000
     }) as Observable<any>)
-    .map(({ data }) => data.allCities)
-    .catch(({ err }) => err);
+      .map(({ data }) => data.allCities)
+      .catch(({ err }) => err);
   }
-
 
   removeCity(id) {
     return (this.apollo.mutate({
@@ -43,7 +53,20 @@ export class CitiesService {
         id: id
       }
     }) as Observable<any>)
-    .map(({ data }) => data.deleteCity.id)
-    .catch(({ err }) => err);
+      .map(({ data }) => data.deleteCity.id)
+      .catch(({ err }) => err);
+  }
+
+  updateCity(city) {
+    return (this.apollo.mutate({
+      mutation: updateCity,
+      variables: {
+        id: city.id,
+        name: city.name,
+        country: city.country
+      }
+    }) as Observable<any>)
+      .map(({ data }) =>  data.updateCity)
+      .catch(({ err }) => err);
   }
 }

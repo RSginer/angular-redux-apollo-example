@@ -12,20 +12,25 @@ import { AppActions } from '../../app.actions';
 export class CitiesListComponent {
 
   @Output() public onRemoveCity: EventEmitter<any> = new EventEmitter<any>();
+  public cities: any[];
 
   constructor(
     private store: NgRedux<ICitiesState>,
     private citiesActions: CitiesActions
-  ) {}
-  // Shorthand for
-  // constructor(ngRedux: NgRedux { this.elephants$ = ngRedux.select('elephants'); })
-  @select(['cities', 'list']) cities$;
+  ) {
+    store.select(['cities', 'list']).subscribe((data: any[]) => {
+      this.cities = data;
+    });
+  }
 
-  // Since we're observing an array of items, we need to set up a 'trackBy'
-  // parameter so Angular doesn't tear down and rebuild the list's DOM every
-  // time there's an update.
+
+
   getItemName(index, item) {
     return item.name;
+  }
+
+  selectCity(city: any) {
+    this.store.dispatch(this.citiesActions.selectCity(city));
   }
 
   deleteCity(id: any) {

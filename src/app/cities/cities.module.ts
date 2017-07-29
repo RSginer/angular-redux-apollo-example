@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { CityComponent } from './city/city.component';
 import { CitiesListComponent } from './cities-list/cities-list.component';
 import { CitiesService } from './cities.service';
 import { NgModule } from '@angular/core'
@@ -8,14 +10,18 @@ import { CitiesActions } from './cities.actions';
 
 @NgModule({
   declarations: [
-    CitiesListComponent
-   ],
+    CitiesListComponent,
+    CityComponent
+  ],
   providers: [
     CitiesEpics,
     CitiesActions,
     CitiesService
   ],
-  imports: [ CommonModule ],
-  exports: [ CitiesListComponent ],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
+  exports: [CitiesListComponent, CityComponent],
 })
-export class CitiesModule {}
+export class CitiesModule { }

@@ -1,9 +1,9 @@
  export interface ICitiesState {
    list: any[];
-   isLoading: boolean;
+   selectedCity: any;
  };
 
  export const CITIES_INITIAL_STATE = {
    list: [],
-   isLoading: false
+   selectedCity: null
  };
