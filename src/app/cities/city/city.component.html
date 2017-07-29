@@ -1,6 +1,6 @@
-<div *ngIf="selectedCity?.name !== null">
-  <h1>City: {{selectedCity?.name}}</h1>
-  <input type="text" name="name" [(ngModel)]="selectedCity.name">
-  <input type="text" name="country" [(ngModel)]="selectedCity.country">
-  <button (click)="updateCity(selectedCity)">Update</button>
+<div *ngIf="selected?.name !== null">
+  <h1>City: {{selected?.name}}</h1>
+  <input type="text" name="name" [(ngModel)]="selected.name">
+  <input type="text" name="country" [(ngModel)]="selected.country">
+  <button (click)="updateCity(selected)">Update</button>
 </div>

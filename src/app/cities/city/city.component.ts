@@ -12,7 +12,7 @@ import { citiesReducer } from '../cities.reducer';
 
 export class CityComponent implements OnInit {
 
-  public selectedCity;
+  public selected;
   public subStore;
 
   constructor(private store: NgRedux<IAppState>,
@@ -22,7 +22,7 @@ export class CityComponent implements OnInit {
 
   ngOnInit() {
     this.factoryStore();
-    this.subStore.select('selectedCity').subscribe((selectedCity: any) => this.selectedCity = selectedCity);
+    this.subStore.select('selected').subscribe((selected: any) => this.selected = selected);
   }
 
   factoryStore() {

@@ -6,14 +6,16 @@ export class CitiesActions {
   static LOAD_SUCCEEDED = 'LOAD_SUCCEEDED(CITIES)';
   static LOAD_FAILED = 'LOAD_FAILED(CITIES)';
 
-  static REMOVED_SUCCEDED = 'REMOVED_SUCCEDED';
-  static REMOVED_ERROR = 'REMOVED_ERROR';
+  static REMOVED_SUCCEDED = 'REMOVED_SUCCEDED(CITY)';
+  static REMOVED_ERROR = 'REMOVED_ERROR(CITY)';
   static REMOVE_CITY = 'REMOVE_CITY';
 
   static SELECT_CITY = 'SELECT_CITY';
 
   static UPDATE_CITY = 'UPDATE_CITY';
-  static UPDATE_SUCCEDED = 'UPDATED_SUCCEDED';
+  static UPDATE_SUCCEDED = 'UPDATED_SUCCEDED(CITY)';
+  static UPDATE_ERROR = 'UPDATED_ERROR(CITY)';
+
 
   loadSucceeded(payload) {
     return {
@@ -72,7 +74,7 @@ export class CitiesActions {
 
   updateError(city) {
     return {
-      type: CitiesActions.UPDATE_SUCCEDED,
+      type: CitiesActions.UPDATE_ERROR,
       payload: city
     };
   }

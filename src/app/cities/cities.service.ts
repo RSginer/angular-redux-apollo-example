@@ -1,3 +1,4 @@
+import { ICRUDService } from './../utils/crud-service';
 import { Angular2Apollo } from 'angular2-apollo';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -5,6 +6,7 @@ import 'rxjs/add/operator/map';
 import ApolloClient from 'apollo-client';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
+import { City } from './city.model';
 
 const getCities = gql`
       query CitiesQuery {
@@ -34,19 +36,20 @@ const updateCity = gql`
     }`;
 
 @Injectable()
-export class CitiesService {
+export class CitiesService implements ICRUDService {
+
   constructor(private apollo: Angular2Apollo) { }
 
-  getAll() {
-    return (this.apollo.watchQuery<any>({
+  getAll(): Observable<City[]> {
+    return (this.apollo.watchQuery<City>({
       query: getCities,
-    //  pollInterval: 20000
+      pollInterval: 20000
     }) as Observable<any>)
       .map(({ data }) => data.allCities)
       .catch(({ err }) => err);
   }
 
-  removeCity(id) {
+  remove(id): Observable<City> {
     return (this.apollo.mutate({
       mutation: deleteCity,
       variables: {
@@ -57,7 +60,7 @@ export class CitiesService {
       .catch(({ err }) => err);
   }
 
-  updateCity(city) {
+  update(city) {
     return (this.apollo.mutate({
       mutation: updateCity,
       variables: {
