@@ -13,6 +13,7 @@ import { citiesReducer } from '../cities.reducer';
 export class CitiesListComponent implements OnInit {
 
   public cities: any[];
+  public isLoading: boolean;
   private subStore: ObservableStore<any>;
 
   constructor(
@@ -23,6 +24,7 @@ export class CitiesListComponent implements OnInit {
   ngOnInit() {
     this.factoryStore();
     this.subStore.select('list').subscribe((cities: any) => this.cities = cities);
+    this.subStore.select('isLoading').subscribe((isLoading: boolean) => this.isLoading = isLoading);
   }
 
   factoryStore() {

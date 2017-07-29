@@ -1,5 +1,6 @@
 <p>Pulled from a remote GraphQL endpoint via Apollo client:</p>
-<h2>World Cities</h2>
+<h2>World Cities  <span [hidden]="!isLoading">Loading...</span></h2>
+
 <ul>
   <li *ngFor="let city of cities; trackBy:getItemName ">
     {{city.name}}, {{city.country}}, {{city.id}} <button (click)="deleteCity(city.id)">Remove</button>
