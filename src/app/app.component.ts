@@ -1,5 +1,5 @@
 import { INITIAL_STATE } from './store';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { Action, combineReducers, applyMiddleware, ReducersMapObject } from 'redux';
@@ -26,7 +26,7 @@ import { CitiesEpics } from './cities/cities.epics';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   cities$: Observable<any>;
 
   constructor(
