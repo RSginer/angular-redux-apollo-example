@@ -36,7 +36,7 @@ function updateCity(state, action) {
     }
     return array;
   });
-  return tassign(state, {selectedCity: null, list: [].concat(reducedArray) });
+  return tassign(state, { selectedCity: null, list: [].concat(reducedArray) });
 }
 
 

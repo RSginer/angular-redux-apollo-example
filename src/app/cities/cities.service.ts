@@ -40,7 +40,7 @@ export class CitiesService {
   getAll() {
     return (this.apollo.watchQuery<any>({
       query: getCities,
-      pollInterval: 20000
+    //  pollInterval: 20000
     }) as Observable<any>)
       .map(({ data }) => data.allCities)
       .catch(({ err }) => err);

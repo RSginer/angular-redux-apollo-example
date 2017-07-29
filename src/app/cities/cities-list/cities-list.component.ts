@@ -1,29 +1,35 @@
-import { ICitiesState } from './../cities.store';
-import { Component, Output, EventEmitter } from '@angular/core';
-import { select, NgRedux } from '@angular-redux/store';
+import { IAppState } from './../../store';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { select, NgRedux, ObservableStore } from '@angular-redux/store';
 import { CitiesActions } from '../cities.actions';
 import { AppActions } from '../../app.actions';
+import { citiesReducer } from '../cities.reducer';
 
 @Component({
   selector: 'app-cities-list',
   templateUrl: './cities-list.component.html',
   styleUrls: ['./cities-list.component.css'],
 })
-export class CitiesListComponent {
+export class CitiesListComponent implements OnInit {
 
-  @Output() public onRemoveCity: EventEmitter<any> = new EventEmitter<any>();
   public cities: any[];
+  private subStore: ObservableStore<any>;
 
   constructor(
-    private store: NgRedux<ICitiesState>,
+    private store: NgRedux<IAppState>,
     private citiesActions: CitiesActions
-  ) {
-    store.select(['cities', 'list']).subscribe((data: any[]) => {
-      this.cities = data;
-    });
+  ) { }
+
+  ngOnInit() {
+    this.factoryStore();
+    this.subStore.select('list').subscribe((cities: any) => this.cities = cities);
   }
 
-
+  factoryStore() {
+    this.subStore = this.store.configureSubStore(
+      ['cities'],
+      citiesReducer);
+  }
 
   getItemName(index, item) {
     return item.name;
