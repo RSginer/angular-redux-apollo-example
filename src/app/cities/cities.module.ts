@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { CityComponent } from './city/city.component';
 import { CitiesListComponent } from './cities-list/cities-list.component';
-import { NgModule } from '@angular/core'
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CitiesEpics } from './cities.epics';
 import { CitiesActions } from './cities.actions';
